@@ -1,4 +1,4 @@
-package umc.study.domain;
+package umc.study.domain.Book.entity;
 
 import lombok.*;
 
@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 
 import lombok.Getter;
+import umc.study.domain.Category;
 import umc.study.domain.common.BaseEntity;
 import umc.study.domain.mapping.BookHashTag;
 import umc.study.domain.mapping.Like;
@@ -39,6 +40,13 @@ public class Book extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    public void modifyBookInfo(String title, String description, Integer stock, Category category){
+        this.title = title;
+        this.description = description;
+        this.stock = stock;
+        this.category = category;
+    }
 
 
 //    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
