@@ -1,11 +1,11 @@
-package umc.study.domain.mapping;
+package umc.study.domain.Rent.entity;
 
 
 import lombok.*;
-import umc.study.domain.Book;
-import umc.study.domain.Member;
+import umc.study.domain.Book.entity.Book;
+import umc.study.domain.Member.entity.Member;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.enums.ReturnStatus;
+import umc.study.domain.mapping.ReturnBook;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,8 +21,14 @@ public class Rent extends BaseEntity {
     @Column(name = "rent_id")
     private Long id;
 
+    @Enumerated(value = EnumType.STRING)
+    private RentStatus rentStatus = RentStatus.ON_RENT;
+
     @Column(nullable = false, columnDefinition = "DATE")
-    private LocalDate rentDate;
+    private LocalDate rentDate = LocalDate.now();
+
+    @Column(nullable = false, columnDefinition = "DATE")
+    private LocalDate expirationDate = LocalDate.now().plusWeeks(1);
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -32,12 +38,14 @@ public class Rent extends BaseEntity {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @OneToOne
-    @JoinColumn(name = "returnBook_id")
-    private ReturnBook returnBook;
+
+//    @OneToOne
+//    @JoinColumn(name = "returnBook_id")
+//    private ReturnBook returnBook;
 
 //    @OneToOne(mappedBy = "rent_id", cascade = CascadeType.ALL)
 //    private ReturnBook returnBook;
+
 
 
 

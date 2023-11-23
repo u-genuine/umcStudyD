@@ -8,14 +8,8 @@ import javax.persistence.*;
 import lombok.Getter;
 import umc.study.domain.Category;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.mapping.BookHashTag;
-import umc.study.domain.mapping.Like;
-import umc.study.domain.mapping.Rent;
-import umc.study.domain.mapping.ReturnBook;
 
 import javax.persistence.Entity;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -31,21 +25,36 @@ public class Book extends BaseEntity {
     @Column(nullable = false, columnDefinition = "VARCHAR(50)")
     private String title;
 
+    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
+    private String author;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(columnDefinition = "DEFAULT 0")
+    @Column(nullable = false, columnDefinition = "DEFAULT 0")
     private Integer stock;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public void modifyBookInfo(String title, String description, Integer stock, Category category){
-        this.title = title;
-        this.description = description;
+
+
+    public Book updateBook(BookUpdateRequest bookUpdateRequest){
+        this.title = bookUpdateRequest.getTitle();
+        this.description = bookUpdateRequest.getBookDescription;
+        return this;
+    }
+
+    public int updateStock(int stock){
         this.stock = stock;
-        this.category = category;
+        return this.stock;
+    }
+
+    public void checkStock(){
+        if(this.stock < 1){
+            throw new NotExistBookStockException(this.id, this.stock);
+        }
     }
 
 

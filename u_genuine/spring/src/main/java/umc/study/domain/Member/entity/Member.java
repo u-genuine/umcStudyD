@@ -1,9 +1,7 @@
 package umc.study.domain.Member.entity;
 
 import lombok.*;
-import umc.study.domain.Member.entity.UserStatus;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.enums.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -40,6 +38,10 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "DATETIME")
     private LocalDate inactiveDate;
 
+    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
+    @Enumerated(EnumType.STRING)
+    private Level level = Level.USER;
+
 //
 //    @OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
 //    private List<Rent> rentList = new ArrayList<>();
@@ -50,5 +52,10 @@ public class Member extends BaseEntity {
 //    @OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
 //    private List<Like> likeList = new ArrayList<>();
 
+//    public boolean checkAdmin(){
+//        if(!level.isAdmin()){
+//
+//        }
+//    }
 
 }
