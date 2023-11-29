@@ -1,19 +1,16 @@
-package umc.study.domain;
+package umc.study.domain.HashTag.entity;
 
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.mapping.BookHashTag;
-import umc.study.domain.mapping.Like;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
 @Builder
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+//@AllArgsConstructor
 public class HashTag extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +20,9 @@ public class HashTag extends BaseEntity {
     @Column(nullable = false, columnDefinition = "VARCHAR(100)")
     private String name;
 
-//    @OneToMany(mappedBy = "hashTag_id", cascade = CascadeType.ALL)
-//    private List<BookHashTag> bookHashTagList = new ArrayList<>();
-
-
+    @Builder
+    public HashTag(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

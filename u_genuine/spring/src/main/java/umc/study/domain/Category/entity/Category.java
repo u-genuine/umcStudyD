@@ -11,7 +11,8 @@ import java.util.List;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@ToString
+//@AllArgsConstructor
 public class Category extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,9 @@ public class Category extends BaseEntity {
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String name;
 
-//    @OneToMany(mappedBy = "category_id", cascade = CascadeType.ALL)
-//    private List<Book> bookList = new ArrayList<>();
+    @Builder
+    public Category(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

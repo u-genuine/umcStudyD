@@ -1,6 +1,6 @@
 package umc.study.domain.Member.entity;
 
-public enum UserStatus {
+public enum MemberStatus {
     ACTIVE, INACTIVE
 }
 

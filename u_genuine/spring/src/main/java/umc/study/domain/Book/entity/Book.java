@@ -15,7 +15,8 @@ import javax.persistence.Entity;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@ToString
+//@AllArgsConstructor
 public class Book extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,43 +32,40 @@ public class Book extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false, columnDefinition = "DEFAULT 0")
-    private Integer stock;
+    @Column(nullable = false)
+    @Builder.Default
+    private Integer stock = 0;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-
-
-    public Book updateBook(BookUpdateRequest bookUpdateRequest){
-        this.title = bookUpdateRequest.getTitle();
-        this.description = bookUpdateRequest.getBookDescription;
-        return this;
-    }
-
-    public int updateStock(int stock){
+    @Builder
+    public Book(Long id, String title, String author, String description, Integer stock, Category category) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.description = description;
         this.stock = stock;
-        return this.stock;
+        this.category = category;
     }
 
-    public void checkStock(){
-        if(this.stock < 1){
-            throw new NotExistBookStockException(this.id, this.stock);
-        }
-    }
+//    public Book updateBook(BookUpdateRequest bookUpdateRequest){
+//        this.title = bookUpdateRequest.getTitle();
+//        this.description = bookUpdateRequest.getBookDescription;
+//        return this;
+//    }
 
+//    public int updateStock(int stock){
+//        this.stock = stock;
+//        return this.stock;
+//    }
 
-//    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
-//    private List<Rent> rentList = new ArrayList<>();
+//    public void checkStock(){
+//        if(this.stock < 1){
+//            throw new NotExistBookStockException(this.id, this.stock);
+//        }
+//    }
 
-//    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-//    private List<ReturnBook> returnBookList = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
-//    private List<BookHashTag> bookHashTagList  = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
-//    private List<Like> likeList = new ArrayList<>();
 
 }

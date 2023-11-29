@@ -10,18 +10,19 @@ import java.time.LocalDate;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@ToString
+//@AllArgsConstructor 대신 생성자에 @Builder 붙이기
 public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
+    @Column(name = "member_id", nullable = false)
     private Long id;
 
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String name;
 
-    @Column(columnDefinition = "VARCHAR(10)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(10)")
     private String nickname;
 
     @Column(columnDefinition = "VARCHAR(10)")
@@ -33,29 +34,36 @@ public class Member extends BaseEntity {
 
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     @Enumerated(EnumType.STRING)
-    private UserStatus status;
+    @Builder.Default
+    private MemberStatus status = MemberStatus.ACTIVE;
 
     @Column(columnDefinition = "DATETIME")
     private LocalDate inactiveDate;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Level level = Level.USER;
 
-//
-//    @OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
-//    private List<Rent> rentList = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
-//    private List<ReturnBook> returnBookList = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
-//    private List<Like> likeList = new ArrayList<>();
-
-//    public boolean checkAdmin(){
-//        if(!level.isAdmin()){
-//
-//        }
+//    public Member update(String nickname, Gender gender, String phonenum, MemberStatus status, LocalDate inactiveDate, Level level) {
+//        this.nickname = nickname;
+//        this.gender = gender;
+//        this.phonenum = phonenum;
+//        this.status = status;
+//        this.inactiveDate = inactiveDate;
+//        this.level = level;
+//        return this;
 //    }
+
+    @Builder
+    public Member(Long id, String name, String nickname, Gender gender, String phonenum, MemberStatus status, LocalDate inactiveDate, Level level) {
+        this.name = name;
+        this.nickname = nickname;
+        this.gender = gender;
+        this.phonenum = phonenum;
+        this.status = status;
+        this.inactiveDate = inactiveDate;
+        this.level = level;
+    }
 
 }
