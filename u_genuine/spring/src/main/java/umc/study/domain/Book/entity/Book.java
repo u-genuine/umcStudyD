@@ -1,15 +1,10 @@
 package umc.study.domain.Book.entity;
 
 import lombok.*;
-
-import javax.persistence.*;
-
-
-import lombok.Getter;
 import umc.study.domain.Category;
 import umc.study.domain.common.BaseEntity;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -56,9 +51,26 @@ public class Book extends BaseEntity {
 //        return this;
 //    }
 
-//    public int updateStock(int stock){
-//        this.stock = stock;
-//        return this.stock;
+    public int updateStock(int stock){
+        this.stock = stock;
+        return this.stock;
+    }
+
+    public void increaseStock(){
+        this.stock++;
+    }
+//    public void decreaseStock(){
+//        if(this.stock > 0){
+//            this.stock--;
+//        } else {
+//            throw new ZeroStockException();
+//        }
+//    }
+//
+//    public void checkStock(){
+//        if(this.stock < 1){
+//            throw new ZeroStockException(this.id, this.stock);
+//        }
 //    }
 
 //    public void checkStock(){

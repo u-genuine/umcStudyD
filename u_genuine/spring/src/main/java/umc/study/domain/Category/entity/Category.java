@@ -1,11 +1,9 @@
-package umc.study.domain;
+package umc.study.domain.Category.entity;
 
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
