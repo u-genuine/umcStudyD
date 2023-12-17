@@ -3,7 +3,6 @@ package umc.study.domain.Rent.entity;
 
 import lombok.*;
 import umc.study.domain.Book.entity.Book;
-import umc.study.domain.Category;
 import umc.study.domain.Member.entity.Member;
 import umc.study.domain.common.BaseEntity;
 
