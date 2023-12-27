@@ -1,4 +1,4 @@
-package umc.study.domain.common;
+package umc.study.global.common;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

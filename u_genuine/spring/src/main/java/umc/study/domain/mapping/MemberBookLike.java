@@ -3,7 +3,7 @@ package umc.study.domain.mapping;
 import lombok.*;
 import umc.study.domain.Book.entity.Book;
 import umc.study.domain.Member.entity.Member;
-import umc.study.domain.common.BaseEntity;
+import umc.study.global.common.BaseEntity;
 
 import javax.persistence.*;
 

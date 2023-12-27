@@ -1,13 +1,14 @@
 package umc.study.domain.Member.entity;
 
 import lombok.*;
-import umc.study.domain.common.BaseEntity;
+import umc.study.global.common.BaseEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString

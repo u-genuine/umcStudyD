@@ -1,18 +1,16 @@
 package umc.study.domain.Book.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-//DTO 공부 더 해야함..
+@Builder
+@Data
 @Getter
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookDTO {
-
-    public class BookCreateDTO{
-        private String title;
-        private String author;
-        private String description;
-        private Integer stock;
-    }
-
+    private Long id;
+    private String title;
+    private String author;
+    private String description;
+    private Integer stock;
 }

@@ -1,7 +1,7 @@
 package umc.study.domain.HashTag.entity;
 
 import lombok.*;
-import umc.study.domain.common.BaseEntity;
+import umc.study.global.common.BaseEntity;
 
 import javax.persistence.*;
 
